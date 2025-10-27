@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  colorMode: {
+    preference: 'system', 
+    fallback: 'light',    
+    storageKey: 'nuxt-color-mode',
+    classSuffix: '',
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',

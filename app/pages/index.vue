@@ -1,6 +1,15 @@
 <template>
-  <div class="w-full h-screen flex justify-center items-center">
-      <UButton size="md" color="primary" label="Hello" class="cursor-pointer"/>
-          
+  <div>
+    <LandingNavBar />
+    <UPageHero
+      title="Work Smarter. Track Faster. Deliver Better"
+      description="An intelligent workspace that adapts to your team. Automate tasks, visualize progress, and hit every deadline with ease."
+    >
+      <template #top>
+        <LandingHeroBackground />
+      </template>
+      
+    </UPageHero>
   </div>
 </template>
+<script setup lang="ts"></script>

@@ -5,7 +5,7 @@ export default defineAppConfig({
     },
   },
   icon: {
-    size: '18px', // default <Icon> size applied
+    size: '22px', // default <Icon> size applied
     class: 'icon', // default <Icon> class applied
     mode: 'css', // default <Icon> mode applied
     aliases: {

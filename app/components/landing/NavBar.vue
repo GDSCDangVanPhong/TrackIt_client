@@ -1,16 +1,22 @@
 <template>
   <UHeader>
     <template #title>
-      <NuxtImg src="/logo_svg.svg" width="80" height="80" />
+      <NuxtImg src="/logo_1.svg" width="60" height="60" />
     </template>
     <UNavigationMenu :items="items" />
     <template #right>
-      <UTooltip text="Open on GitHub">
-        <NuxtLink to="/">
-          <Icon name="simple-icons:github" />
-        </NuxtLink>
+      <UTooltip text="Open on GitHub" >
+          <UButton variant="ghost" icon="brandico:github" class="cursor-pointer" to="https://github.com/GDSCDangVanPhong/TrackIt_client" target="_blank"/>
       </UTooltip>
-      <CommonsColorMode class="pl-2"/>
+      <CommonsColorMode />
+      <UButton
+        size="md"
+        label="Sign in"
+        class="ml-1 cursor-pointer"
+        variant="outline"
+        trailing-icon="i-lucide-arrow-right"
+        to="/auth"
+      />
     </template>
   </UHeader>
 </template>
@@ -20,15 +26,15 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: "Docs",
-    to: "/",
+    to: "/a",
   },
   {
     label: "Features",
-    to: "/",
+    to: "/a",
   },
   {
     label: "Pricing",
-    to: "/",
+    to: "/a",
   },
 ]);
 </script>

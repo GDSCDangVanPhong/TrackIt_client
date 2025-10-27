@@ -1,12 +1,15 @@
 <template>
-  <UButton
-    :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
-    color="neutral"
-    variant="ghost"
-    :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
-    class="cursor-pointer"
-    @click="isDark = !isDark"
-  />
+  
+    <UButton
+      :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+      color="neutral"
+      variant="ghost"
+      :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
+      class="cursor-pointer"
+      size="lg"
+      @click="isDark = !isDark"
+    />
+  
 </template>
 <script setup lang="ts">
 const colorMode = useColorMode();
