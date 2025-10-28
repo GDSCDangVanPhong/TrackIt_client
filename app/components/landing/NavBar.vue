@@ -26,15 +26,15 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: "Docs",
-    to: "/a",
+    to:"/a",
   },
   {
     label: "Features",
-    to: "/a",
+    to: "#features",
   },
   {
     label: "Pricing",
-    to: "/a",
+    to: "#pricing",
   },
 ]);
 </script>

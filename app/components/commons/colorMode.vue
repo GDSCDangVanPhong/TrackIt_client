@@ -1,21 +1,22 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+const colorMode = useColorMode();
 
 const isDark = computed({
   get() {
-    return colorMode.value === 'dark'
+    return colorMode.value === "dark";
   },
   set(_isDark) {
-    colorMode.preference = _isDark ? 'dark' : 'light'
-  }
-})
+    colorMode.preference = _isDark ? "dark" : "light";
+  },
+});
 </script>
 <template>
-<ClientOnly v-if="!colorMode?.forced">
+  <ClientOnly v-if="!colorMode?.forced">
     <UButton
       :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
       color="neutral"
       variant="ghost"
+      class="cursor-pointer"
       :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
       @click="isDark = !isDark"
     />
@@ -25,4 +26,3 @@ const isDark = computed({
     </template>
   </ClientOnly>
 </template>
-
