@@ -1,30 +1,22 @@
 <template>
-  <UPageSection
-  title="Testimonial"
-  description="See what others talk about us">
-    
-
-    <!-- Review Section -->
+  <UPageSection title="Testimonial" description="See what others talk about us">
     <div
-      class="relative h-[430px] w-full overflow-hidden rounded-xl transition-colors duration-300
-      bg-white dark:bg-neutral-900 shadow-lg dark:shadow-none border border-gray-100 dark:border-neutral-800"
+      class="relative h-[430px] w-full overflow-hidden rounded-xl transition-colors duration-300 bg-white dark:bg-neutral-900 shadow-lg dark:shadow-none border border-gray-100 dark:border-neutral-800"
     >
-      <!-- Center Text -->
       <div
-        class="absolute inset-0 z-10 mt-20 flex flex-col items-center justify-center px-4 text-center"
+        class="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center"
       >
         <h3 class="mb-2 text-2xl font-bold sm:text-3xl">
           What are you waiting for?
         </h3>
         <p class="m-4 text-base sm:text-lg text-gray-600 dark:text-gray-300">
-          Get started and start building awesome UI 😄
+          Get started and start building awesome teams
         </p>
         <NuxtLink to="getting-started/installation">
-          <UButton> Get Started → </UButton>
+          <UButton class="cursor-pointer"> Get Started → </UButton>
         </NuxtLink>
       </div>
 
-      <!-- Tilted Marquees -->
       <div class="absolute inset-0 overflow-hidden">
         <CommonsMarquee
           :style="{ transform: 'translateY(-11.5rem) rotate(-16deg)' }"
@@ -89,18 +81,14 @@
         </CommonsMarquee>
       </div>
 
-      <!-- Gradient overlay -->
       <div
-        class="pointer-events-none absolute inset-0 bg-gradient-to-t 
-        from-white via-white/40 to-transparent 
-        dark:from-neutral-950 dark:via-neutral-950/60 dark:to-transparent"
+        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-neutral-950 dark:via-neutral-950/60 dark:to-transparent"
       ></div>
     </div>
   </UPageSection>
 </template>
 
 <script setup lang="ts">
-// Reviews data
 const reviews = [
   {
     name: "kiri",
