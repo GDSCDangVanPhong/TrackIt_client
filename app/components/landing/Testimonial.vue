@@ -12,7 +12,7 @@
         <p class="m-4 text-base sm:text-lg text-gray-600 dark:text-gray-300">
           Get started and start building awesome teams
         </p>
-        <NuxtLink to="getting-started/installation">
+        <NuxtLink to="/docs/get-started">
           <UButton class="cursor-pointer"> Get Started → </UButton>
         </NuxtLink>
       </div>

@@ -10,7 +10,8 @@
     src="/USP.webp" 
     format="webp" 
     loading="lazy" 
-    class="rounded-xl"/>
+    class="rounded-xl"
+    alt="Track It"/>
   </UPageSection>
 </template>
 <script setup lang="ts">

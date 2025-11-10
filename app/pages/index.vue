@@ -3,9 +3,9 @@
       <LandingHeroSection />
       <LandingPoweredBy />
       <LandingUSP />
-      <LandingFeatures id="features"/>
-      <LandingPricings id="pricing"/>
-      <LandingTestimonial/>
+      <LazyLandingFeatures id="features"/>
+      <LazyLandingPricings id="pricing"/>
+      <LazyLandingTestimonial hydrate-on-visible/>
   </div>
 </template>
 <script setup lang="ts">

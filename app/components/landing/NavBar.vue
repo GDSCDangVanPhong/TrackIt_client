@@ -1,7 +1,7 @@
 <template>
   <UHeader>
     <template #title>
-      <NuxtImg src="/logo_1.svg" width="60" height="60" />
+      <NuxtImg src="/logo_1.svg" width="60" height="60" alt="Track It"/>
     </template>
     <UNavigationMenu :items="items" />
     <template #right>
@@ -26,7 +26,7 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: "Docs",
-    to:"/a",
+    to:"/docs",
   },
   {
     label: "Features",
