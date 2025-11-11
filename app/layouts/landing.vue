@@ -1,7 +1,7 @@
 <template>
   <div>
-    <LandingNavBar />
+    <CommonsNavBar type="landing"/>
     <slot id="body" />
-    <LandingFooter />
+    <CommonsFooter />
   </div>
 </template>
