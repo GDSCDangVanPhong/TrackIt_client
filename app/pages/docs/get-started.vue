@@ -1,9 +1,9 @@
 <template>
   <div v-if="article">
-      <UContainer>
+      <UContainer >
         <UPage>
-          <template #left>
-            <UPageAside>
+          <template #left >
+            <UPageAside > 
               <UContentNavigation
               :navigation="navigation"
               highlight
@@ -58,7 +58,7 @@ const navigation = computed(() => [
         active: focus.value === 'who-made-this',
         onClick: () => {
           focus.value = 'who-made-this';
-          console.log(focus.value);
+          
         }
       }
     ]
@@ -69,12 +69,44 @@ const navigation = computed(() => [
     path: '#composables',
     children: [
       {
-        title: 'defineShortcuts',
-        path: '#defineshortcuts'
+        title: 'Sign up and log in',
+        path: '#sign-up-and-log-in',
+        active: focus.value === 'sign-up-and-log-in',
+        onClick: () => {
+          focus.value = 'sign-up-and-log-in';
+        }
       },
       {
-        title: 'useModal',
-        path: '#usemodal'
+        title: 'Create workspace',
+        path: '#create-your-first-workspace',
+        active: focus.value === 'create-your-first-workspace',
+        onClick: () => {
+          focus.value = 'create-your-first-workspace';
+        }
+      },
+      {
+        title: 'Add projects',
+        path: '#add-projects',
+        active: focus.value === 'add-projects',
+        onClick: () => {
+          focus.value = 'add-projects';
+        }
+      },
+      {
+        title: 'Create tasks',
+        path: '#create-tasks',
+        active: focus.value === 'create-tasks',
+        onClick: () => {
+          focus.value = 'create-tasks';
+        }
+      },
+      {
+        title: 'Views & Organization',
+        path: '#views-organization',
+        active: focus.value === 'views-organization',
+        onClick: () => {
+          focus.value = 'views-organization';
+        }
       }
     ]
   }

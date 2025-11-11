@@ -3,8 +3,9 @@
     <template #title>
       <NuxtImg src="/logo_1.svg" width="60" height="60" alt="Track It"/>
     </template>
-    <UNavigationMenu v-if="type === 'landing'" :items="items" :highlight="true" highlight-color="primary"/>
-    <UNavigationMenu v-if="type === 'docs'" :items="items" highlight />
+    <template #default>
+    <UNavigationMenu v-if="hasMenu" :items="items" highlight />
+    </template>
     <template #right>
       <UTooltip text="Open on GitHub" >
           <UButton variant="ghost" icon="brandico:github" class="cursor-pointer" to="https://github.com/GDSCDangVanPhong/TrackIt_client" target="_blank"/>
@@ -19,14 +20,14 @@
         to="/auth"
       />  
       </template>
+      
   </UHeader>
 </template>
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
-defineProps<{
-  type: 'landing' | 'docs'
-}>()
-
+defineProps({
+  hasMenu: Boolean,
+})
 const activeTab = ref()
 const items = computed<NavigationMenuItem[]>(() => [
   {

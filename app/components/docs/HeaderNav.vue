@@ -1,7 +1,7 @@
 <template>
-  <UHeader>
-    <UNavigationMenu :items="items" highlight />
-  </UHeader>
+<UContainer class="">
+  <UNavigationMenu :items="items" highlight />
+</UContainer>
 </template>
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
