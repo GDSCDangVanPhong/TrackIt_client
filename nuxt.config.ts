@@ -12,8 +12,37 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@sidebase/nuxt-auth'
   ],
+  auth: {
+      isEnabled: true,
+      disableServerSideAuth: false,
+      originEnvKey: 'AUTH_ORIGIN',
+      baseURL: 'http://localhost:3000/api/auth',
+      provider: {
+        type: 'authjs',
+              trustHost: false,
+              defaultProvider: 'github',
+              addDefaultCallbackUrl: true
+      },
+      sessionRefresh: {
+        enablePeriodically: true,
+        enableOnWindowFocus: true,
+      }
+  },
+  runtimeConfig: {
+      authSecret: process.env.NUXT_AUTH_SECRET,
+  
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      },
+  
+      backend: {
+        graphqlUrl: process.env.BACKEND_GRAPHQL_URL,
+      },
+    },
   css: ['~/assets/css/main.css'],
   app: {
       head: {
