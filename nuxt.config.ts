@@ -8,37 +8,16 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode',
     classSuffix: '',
   },
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    '@sidebase/nuxt-auth'
-  ],
-  auth: {
-      isEnabled: true,
-      disableServerSideAuth: false,
-      originEnvKey: 'AUTH_ORIGIN',
-      baseURL: 'http://localhost:3000/api/auth',
-      provider: {
-        type: 'authjs',
-              trustHost: false,
-              defaultProvider: 'github',
-              addDefaultCallbackUrl: true
-      },
-      sessionRefresh: {
-        enablePeriodically: true,
-        enableOnWindowFocus: true,
-      }
-  },
+  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content', 'nuxt-graphql-client'],
   runtimeConfig: {
       authSecret: process.env.NUXT_AUTH_SECRET,
-  
-      google: {
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      public: {
+            GQL_HOST: 'http://localhost:4000/graphql' ,
+            google: {
+              clientId: process.env.GOOGLE_CLIENT_ID,
+              clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            },
       },
-  
       backend: {
         graphqlUrl: process.env.BACKEND_GRAPHQL_URL,
       },

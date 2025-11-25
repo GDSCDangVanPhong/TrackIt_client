@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
+import { useToast } from '#imports'
+import { useGoogleOAuth } from '~/composables/auth/useGoogleLogin'
 
+const { login } = useGoogleOAuth()
 const toast = useToast()
-const auth = useLocalAuth()
 const fields: AuthFormField[] = [{
   name: 'email',
   type: 'text',
@@ -36,7 +38,7 @@ const providers = [{
   icon: 'i-simple-icons-google',
   class: 'cursor-pointer',
   onClick: () => {
-    toast.add({ title: 'Google', description: 'Login with Google' })
+    login()
   }
 }, {
   label: 'GitHub',
@@ -50,14 +52,51 @@ const providers = [{
 const schema = z.object({
   email: z.string().email('Invalid email'),
   password: z.string().min(8, 'Must be at least 8 characters'),
-  confirmedPassword: z.string().min(8, 'Must be at least 8 characters'),
+  confirmPassword: z.string(), // ← phải đúng với tên field
   name: z.string().min(2, 'Must be at least 2 characters'),
+})
+// Và thêm refine để kiểm tra password trùng nhau
+.refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
 })
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload)
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  console.log('Trigg')
+
+  try {
+    // Đây là cách đúng: await trong try/catch
+    const { register } = await GqlRegisterUser({
+      registerRequest: {
+        email: payload.data.email,
+        password: payload.data.password,
+        name: payload.data.name,
+        confirmPassword: payload.data.confirmPassword,
+      },
+    })
+
+    // Nếu đến đây → chắc chắn thành công
+    toast.add({
+      title: 'Success!',
+      description: 'Your account has been created. Welcome!',
+      color: 'success',
+      icon: 'i-lucide-check-circle',
+      
+    })
+    
+
+    // navigateTo('/dashboard') nếu muốn
+  } catch (error) {
+    console.log(error)
+    toast.add({
+      title: 'Đăng ký thất bại',
+      description: `${error.gqlErrors[0].message}`,
+      color: 'error',
+      icon: 'i-lucide-x-circle',
+    })
+  }
 }
 </script>
 
