@@ -8,19 +8,18 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode',
     classSuffix: '',
   },
-  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content', 'nuxt-graphql-client'],
+  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content'],
   runtimeConfig: {
       authSecret: process.env.NUXT_AUTH_SECRET,
       public: {
-            GQL_HOST: 'http://localhost:4000/graphql' ,
             google: {
               clientId: process.env.GOOGLE_CLIENT_ID,
               clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             },
       },
       backend: {
-        graphqlUrl: process.env.BACKEND_GRAPHQL_URL,
-      },
+        base_url: process.env.BACKEND_BASE_URL,
+      }
     },
   css: ['~/assets/css/main.css'],
   app: {

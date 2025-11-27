@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
+import type { AuthFormField } from '@nuxt/ui'
 import { useToast } from '#imports'
 import { useGoogleOAuth } from '~/composables/auth/useGoogleLogin'
 
@@ -62,42 +62,10 @@ const schema = z.object({
 })
 
 type Schema = z.output<typeof schema>
-
-async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Trigg')
-
-  try {
-    // Đây là cách đúng: await trong try/catch
-    const { register } = await GqlRegisterUser({
-      registerRequest: {
-        email: payload.data.email,
-        password: payload.data.password,
-        name: payload.data.name,
-        confirmPassword: payload.data.confirmPassword,
-      },
-    })
-
-    // Nếu đến đây → chắc chắn thành công
-    toast.add({
-      title: 'Success!',
-      description: 'Your account has been created. Welcome!',
-      color: 'success',
-      icon: 'i-lucide-check-circle',
-      
-    })
-    
-
-    // navigateTo('/dashboard') nếu muốn
-  } catch (error) {
-    console.log(error)
-    toast.add({
-      title: 'Đăng ký thất bại',
-      description: `${error.gqlErrors[0].message}`,
-      color: 'error',
-      icon: 'i-lucide-x-circle',
-    })
-  }
+function onSubmit(){
+  console.log('Submitted')
 }
+
 </script>
 
 <template>

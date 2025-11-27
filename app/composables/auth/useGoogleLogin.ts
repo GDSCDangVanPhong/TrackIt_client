@@ -5,15 +5,15 @@ export const useGoogleOAuth = () => {
   const login = () => {
     const params = new URLSearchParams({
       client_id: config.public.google.clientId,
-      redirect_uri: 'http://localhost:3000/api/auth/callback',
+      redirect_uri: 'http://localhost:3000/auth/google/callback',
       response_type: 'code',
       scope: 'openid email profile',
       access_type: 'offline',
-      state: Math.random().toString(36).substring(2), // chống CSRF
+      state: Math.random().toString(36).substring(2),
       prompt: 'consent'
     })
 
-    // Lưu state tạm để kiểm tra lại khi callback (tùy chọn nhưng nên có)
+    
     const state = params.get('state')!
     useCookie('oauth_state', { maxAge: 600 }).value = state
 

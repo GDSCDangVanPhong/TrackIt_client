@@ -21,7 +21,7 @@ const error = ref(null);
 
 // URL của endpoint backend để xử lý code
 // Thay thế bằng endpoint thực tế của bạn
-const backendAuthEndpoint = config.public.apiBaseUrl + '/auth/login/google';
+const backendAuthEndpoint = 'http://localhost:4001/auth/google';
 
 /**
  * Hàm gửi Authorization Code đến Backend
@@ -42,7 +42,7 @@ const sendCodeToBackend = async (authCode) => {
       // Gửi code đến BE
       code: authCode, 
       // Gửi lại redirect_uri đã dùng, giúp BE xác minh yêu cầu
-      redirectUri: window.location.origin + route.fullPath.split('?')[0]
+      redirect_uri: window.location.origin + route.fullPath.split('?')[0]
     };
 
     console.log('Gửi code đến BE:', payload);
@@ -54,12 +54,10 @@ const sendCodeToBackend = async (authCode) => {
     });
     
     // Giả sử Backend trả về một token và thông tin user
-    const { token, user } = response;
-
-    if (token) {
-      // 4. Lưu Token (ví dụ: vào Local Storage)
-      localStorage.setItem('userToken', token);
-      console.log('Đăng nhập thành công, Token đã được lưu.');
+    const { data, user } = response;
+    console.log(data)
+    if (data) {
+      console.log(data)
       
       // 5. Chuyển hướng người dùng đến trang chính
       router.replace('/'); 
