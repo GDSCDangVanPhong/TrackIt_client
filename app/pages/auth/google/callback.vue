@@ -10,18 +10,20 @@
 <script setup>
 // 1. Nhập các hook cần thiết từ Nuxt và Vue
 import { onMounted, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig, useRoute, useRouter } from '#app';
+import { useAuthStore } from '~/store/useAuthStore';
 
 // Định nghĩa các biến trạng thái
 const router = useRouter();
 const route = useRoute();
+const toast = useToast();
 const config = useRuntimeConfig();
+const baseUrl = config.public.backend.base_url;
 const error = ref(null);
-
+const { setToken, setUser } = useAuthStore();
 // URL của endpoint backend để xử lý code
 // Thay thế bằng endpoint thực tế của bạn
-const backendAuthEndpoint = 'http://localhost:4001/auth/google';
+const backendAuthEndpoint = `${baseUrl}/auth/google`;
 
 /**
  * Hàm gửi Authorization Code đến Backend
@@ -29,10 +31,12 @@ const backendAuthEndpoint = 'http://localhost:4001/auth/google';
  */
 const sendCodeToBackend = async (authCode) => {
   if (!authCode) {
-    error.value = 'Không tìm thấy Authorization Code trong URL.';
-    console.error('Lỗi: Thiếu code ủy quyền.');
-    // Chuyển hướng về trang đăng nhập nếu thiếu code
-    router.replace('/login'); 
+    toast.add({
+      title: 'Authentication Error',
+      description: 'Authorization code not provided',
+      color: 'error'
+    })
+    
     return;
   }
   
@@ -41,11 +45,9 @@ const sendCodeToBackend = async (authCode) => {
     const payload = {
       // Gửi code đến BE
       code: authCode, 
-      // Gửi lại redirect_uri đã dùng, giúp BE xác minh yêu cầu
+      
       redirect_uri: window.location.origin + route.fullPath.split('?')[0]
     };
-
-    console.log('Gửi code đến BE:', payload);
 
     // 3. Thực hiện yêu cầu POST đến Backend
     const response = await $fetch(backendAuthEndpoint, {
@@ -54,41 +56,55 @@ const sendCodeToBackend = async (authCode) => {
     });
     
     // Giả sử Backend trả về một token và thông tin user
-    const { data, user } = response;
+    const { data, success} = response;
     console.log(data)
-    if (data) {
-      console.log(data)
-      
-      // 5. Chuyển hướng người dùng đến trang chính
-      router.replace('/'); 
+    if (success) {
+      setToken(data.accessToken)
+      setUser(data.user)
+      router.push('/')
     } else {
-      error.value = 'Lỗi xác thực: Backend không trả về token.';
+      toast.add({
+        title: 'Authentication Error',
+        description: 'Backend did not return a token!',
+        color: 'error'
+      })
+      router.push('/login')
     }
 
   } catch (err) {
-    console.error('Lỗi khi gửi code đến Backend:', err);
     error.value = err.data?.message || 'Không thể xác thực với Backend.';
-    // Chuyển hướng người dùng về trang đăng nhập sau khi gặp lỗi
-    // router.replace('/login'); 
+    toast.add({
+      title: 'Authentication Error',
+      description: error.value,
+      color: 'error'
+    })
+    router.push('/login')
   }
 };
 
 // 6. Hook onMounted để bắt đầu xử lý khi component được tải
 onMounted(() => {
+  
   // Lấy giá trị 'code' từ query parameter của URL
   const authCode = route.query.code;
 
   if (authCode) {
     sendCodeToBackend(authCode);
   } else if (route.query.error) {
-    // Xử lý trường hợp Google trả về lỗi (ví dụ: người dùng từ chối)
-    error.value = `Lỗi từ Google: ${route.query.error_description || route.query.error}`;
-    console.error('Lỗi Google Auth:', route.query.error);
-    // Có thể chuyển hướng về trang đăng nhập sau 3s
-    setTimeout(() => router.replace('/login'), 3000); 
+    toast.add({
+      title: 'Authentication Error',
+      description: error.value,
+      color: 'error'
+    })
+    setTimeout(() => router.push('/login'), 3000); 
   } else {
     error.value = 'URL không hợp lệ. Không tìm thấy code hoặc lỗi.';
-    router.replace('/login');
+    toast.add({
+      title: 'Authentication Error',
+      description: error.value,
+      color: 'error'
+    })
+    router.push('/login');
   }
 });
 </script>

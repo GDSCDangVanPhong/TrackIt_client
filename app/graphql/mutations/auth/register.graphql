@@ -1,6 +1,0 @@
-mutation RegisterUser($registerRequest: RegisterDto!) {
-  register(registerRequest: $registerRequest) {
-    accessToken
-    refreshToken
-  }
-}

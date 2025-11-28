@@ -8,18 +8,18 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode',
     classSuffix: '',
   },
-  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content'],
+  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content', '@pinia/nuxt'],
   runtimeConfig: {
-      authSecret: process.env.NUXT_AUTH_SECRET,
       public: {
             google: {
               clientId: process.env.GOOGLE_CLIENT_ID,
               clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             },
+            backend: {
+              base_url: process.env.BACKEND_BASE_URL,
+            }
       },
-      backend: {
-        base_url: process.env.BACKEND_BASE_URL,
-      }
+      
     },
   css: ['~/assets/css/main.css'],
   app: {

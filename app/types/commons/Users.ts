@@ -1,0 +1,10 @@
+export type User = { 
+  id: string,
+  email: string,
+  avatar_url: string,
+  slug: string,
+  name: string,
+  bio?: string,
+  created_at: string,
+  updated_at: string
+}
