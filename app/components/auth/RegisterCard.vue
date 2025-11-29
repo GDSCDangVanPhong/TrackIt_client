@@ -9,7 +9,8 @@ import { useAuthStore } from "~/store/useAuthStore";
 const { login } = useGoogleOAuth();
 const { useSignUp } = useLocalAuth();
 const toast = useToast();
-const router = useRouter()
+const router = useRouter();
+const isLoading = ref(false);
 const { setUser, setToken } = useAuthStore();
 const fields: AuthFormField[] = [
   {
@@ -76,27 +77,22 @@ const schema = z
 type Schema = z.output<typeof schema>;
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   try{
-    const { data, error } = await useSignUp(event.data.email, event.data.password, event.data.confirmPassword, event.data.name);
-    if (error) {
-      toast.add({
-        title: 'Error',
-        description: error.message,
-        color: 'error'
-      })
-      return
-    }
-    setUser(data.user)
-    setToken(data.accessToken)
-    router.push('/')
+    isLoading.value = true;
+    const response = await useSignUp(
+      event.data.email,
+      event.data.password,
+      event.data.confirmPassword,
+      event.data.name,
+    );
+    setUser(response.data.user);
+    setToken(response.data.accessToken);
+    router.push("/");
+  } catch {
+    return;
   }
-  catch {
-    toast.add({
-      title: 'Error',
-      description: 'Error occurred while registering!',
-      color: 'error'
-    })
+  finally {
+    isLoading.value = false;
   }
-  
 }
 </script>
 

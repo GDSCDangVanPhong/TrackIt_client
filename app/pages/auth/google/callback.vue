@@ -1,13 +1,20 @@
 <template>
-  <div class="callback-container">
-    <p>Đang xử lý đăng nhập với Google...</p>
-    <div v-if="error" class="error-message">
-      Có lỗi xảy ra: {{ error }}
+  <div class="w-screen h-screen flex justify-center items-center p-8">
+    <div class="w-96 h-96 flex flex-col justify-center items-center border-primary rounded-lg ">
+      <div class="text-center px-8">
+        <h1 class="text-2xl font-bold text-primary mb-4">Google OAuth</h1>
+        <p class="text-primary mb-20">
+          You will be redirected to Google to authorize the application. Stay tuned!
+        </p>
+        <div class="flex justify-center">
+          <CommonsLoadingAnimation />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup>
+ <script setup>
 // 1. Nhập các hook cần thiết từ Nuxt và Vue
 import { onMounted, ref } from 'vue';
 import { useRuntimeConfig, useRoute, useRouter } from '#app';
@@ -107,24 +114,4 @@ onMounted(() => {
     router.push('/login');
   }
 });
-</script>
-
-<style scoped>
-.callback-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  text-align: center;
-  font-family: sans-serif;
-}
-.error-message {
-  color: #d32f2f;
-  background-color: #ffebee;
-  padding: 15px;
-  border-radius: 5px;
-  margin-top: 20px;
-  border: 1px solid #d32f2f;
-}
-</style>
+</script> 
