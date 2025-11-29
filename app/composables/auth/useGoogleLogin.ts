@@ -1,8 +1,7 @@
-// composables/useGoogleOAuth.ts
 export const useGoogleOAuth = () => {
   const config = useRuntimeConfig()
 
-  const login = () => {
+  const googleLogin = () => {
     const params = new URLSearchParams({
       client_id: config.public.google.clientId,
       redirect_uri: 'http://localhost:3000/auth/google/callback',
@@ -21,5 +20,5 @@ export const useGoogleOAuth = () => {
     window.location.href = googleUrl
   }
 
-  return { login }
+  return { googleLogin }
 }

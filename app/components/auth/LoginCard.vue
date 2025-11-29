@@ -4,9 +4,11 @@ import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
 import { useGoogleOAuth } from "~/composables/auth/useGoogleLogin";
 import { useLocalAuth } from "~/composables/auth/useLocalAuth";
 import { useAuthStore } from "~/store/useAuthStore";
+import { useGitHubLogin } from "~/composables/auth/useGitHubLogin";
 
 const toast = useToast();
-const { login } = useGoogleOAuth();
+const { googleLogin } = useGoogleOAuth();
+const { githubLogin } = useGitHubLogin();
 const { useSignIn } = useLocalAuth();
 const router = useRouter();
 const isLoading = ref(false)
@@ -34,7 +36,7 @@ const providers = [
     icon: "i-simple-icons-google",
     class: "cursor-pointer",
     onClick: () => {
-      login();
+      googleLogin();
     },
   },
   {
@@ -42,7 +44,7 @@ const providers = [
     icon: "i-simple-icons-github",
     class: "cursor-pointer",
     onClick: () => {
-      toast.add({ title: "GitHub", description: "Login with GitHub" });
+      githubLogin();
     },
   },
 ];

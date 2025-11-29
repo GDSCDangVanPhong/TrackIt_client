@@ -6,7 +6,7 @@ import { useGoogleOAuth } from "~/composables/auth/useGoogleLogin";
 import { useLocalAuth } from "~/composables/auth/useLocalAuth";
 import { useAuthStore } from "~/store/useAuthStore";
 
-const { login } = useGoogleOAuth();
+const { googleLogin } = useGoogleOAuth();
 const { useSignUp } = useLocalAuth();
 const toast = useToast();
 const router = useRouter();
@@ -48,7 +48,7 @@ const providers = [
     icon: "i-simple-icons-google",
     class: "cursor-pointer",
     onClick: () => {
-      login();
+      googleLogin();
     },
   },
   {
