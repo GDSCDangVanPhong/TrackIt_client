@@ -1,4 +1,3 @@
-import { toast } from "#build/ui";
 import type { ApiResponse } from "~/types/commons/Response";
 
 export const useLocalAuth = () => {

@@ -6,11 +6,13 @@ import { useLocalAuth } from "~/composables/auth/useLocalAuth";
 import { useAuthStore } from "~/store/useAuthStore";
 import { useGitHubLogin } from "~/composables/auth/useGitHubLogin";
 
-const toast = useToast();
+
+
 const { googleLogin } = useGoogleOAuth();
 const { githubLogin } = useGitHubLogin();
 const { useSignIn } = useLocalAuth();
 const router = useRouter();
+
 const isLoading = ref(false)
 const { setUser, setToken } = useAuthStore();
 const fields: AuthFormField[] = [
