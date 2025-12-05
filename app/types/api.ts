@@ -100,7 +100,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/auth/verify": {
+    "/auth/refreshToken": {
         parameters: {
             query?: never;
             header?: never;
@@ -127,7 +127,6 @@ export interface components {
         RegisterDto: Record<string, never>;
         GoogleOAuthDto: Record<string, never>;
         GitHubOAuthDto: Record<string, never>;
-        VerifyTokenDto: Record<string, never>;
         ApiErrorDto: {
             /** @example 401 */
             code: string;
@@ -412,17 +411,70 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["VerifyTokenDto"];
-            };
-        };
+        requestBody?: never;
         responses: {
-            201: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ApiResponseDto"] & {
+                        data?: components["schemas"]["String"];
+                        error?: null;
+                    };
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseDto"] & {
+                        /** @enum {boolean} */
+                        success?: false;
+                        data?: null;
+                        error?: components["schemas"]["ApiErrorDto"];
+                    };
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseDto"] & {
+                        /** @enum {boolean} */
+                        success?: false;
+                        data?: null;
+                        error?: components["schemas"]["ApiErrorDto"];
+                    };
+                };
+            };
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseDto"] & {
+                        /** @enum {boolean} */
+                        success?: false;
+                        data?: null;
+                        error?: components["schemas"]["ApiErrorDto"];
+                    };
+                };
+            };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseDto"] & {
+                        /** @enum {boolean} */
+                        success?: false;
+                        data?: null;
+                        error?: components["schemas"]["ApiErrorDto"];
+                    };
+                };
             };
         };
     };

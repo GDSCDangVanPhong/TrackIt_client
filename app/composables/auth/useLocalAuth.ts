@@ -15,6 +15,7 @@ export const useLocalAuth = () => {
       {
         method: "POST",
         body: { email, password },
+        credentials: 'include',
         onResponseError({ response }) {
           toast.add({
             title: "Authentication Error",
@@ -38,6 +39,7 @@ export const useLocalAuth = () => {
       {
         method: "POST",
         body: { email, password, confirmPassword, name },
+        credentials: 'include',
         onResponseError({ response }) {
           toast.add({
             title: "Sin up error!",
