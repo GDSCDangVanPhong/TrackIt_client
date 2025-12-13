@@ -1,5 +1,5 @@
 <template>
-<div class=" grid md:grid-cols-2 sm:grid-cols-1 gap-6" >
+<div class=" grid md:grid-cols-1 lg:grid-cols-2 gap-6" >
     <UPageCard title="Recent">
         <UTable :data="data" class="flex-1" />
     </UPageCard>
