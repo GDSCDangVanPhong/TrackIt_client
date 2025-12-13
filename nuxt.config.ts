@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode',
     classSuffix: '',
   },
-  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
+  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxt/content', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', "nuxt-charts"],
   runtimeConfig: {
       public: {
             google: {
