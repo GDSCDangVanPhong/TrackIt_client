@@ -35,7 +35,10 @@
             <UNavigationMenu
               :collapsed="collapsed"
               :items="items[1]"
-              orientation="vertical"
+              highlight
+              highlight-color="primary"
+              orientation="horizontal"
+
               class="mt-auto"
             />
           </template>
@@ -57,16 +60,19 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 const items: NavigationMenuItem[][] = [[{
   label: 'Home',
   icon: 'i-lucide-house',
-  class: 'cursor-pointer'
+  class: 'cursor-pointer',
+  to: '/dashboard/home'
 }, {
   label: 'Inbox',
   icon: 'i-lucide-inbox',
   badge: '4',
-  class: 'cursor-pointer'
+  class: 'cursor-pointer',
+  to: '/dashboard/inbox'
 }, {
   label: 'Space',
   icon: 'material-symbols:planet-rounded',
-  class: 'cursor-pointer'
+  class: 'cursor-pointer',
+  to: '/dashboard/space'
 }, {
   label: 'Settings',
   icon: 'i-lucide-settings',

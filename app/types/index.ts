@@ -11,3 +11,11 @@ export interface Stat {
   variation: number
   formatter?: (value: number) => string
 }
+export interface Mail {
+  id: number
+  unread?: boolean
+  from: User
+  subject: string
+  body: string
+  date: string
+}

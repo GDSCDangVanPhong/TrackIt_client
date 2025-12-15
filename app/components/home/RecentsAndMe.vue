@@ -1,10 +1,10 @@
 <template>
 <div class=" grid md:grid-cols-1 lg:grid-cols-2 gap-6" >
-    <UPageCard title="Recent">
-        <UTable :data="data" class="flex-1" />
+    <UPageCard title="Recent tasks">
+        <UTable :data="data"  />
     </UPageCard>
-    <UPageCard title="Me">
-        <UTable :data="data" class="flex-1" />
+    <UPageCard title="Assigned to me">
+        <UTable :data="data"  />
     </UPageCard>
 </div>
 </template>
