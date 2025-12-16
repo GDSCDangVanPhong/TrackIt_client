@@ -1,7 +1,7 @@
 <template>
 <UDropdownMenu
 :items="items"
-class="cursor-pointer"
+class="cursor-pointer h-10"
 :content="{
   side: 'right',
   sideOffset: 10
@@ -76,13 +76,21 @@ class="cursor-pointer"
     </template>
     <UButton
       :avatar="{
-        src: 'https://github.com/benjamincanac.png'
+        src: 'https://github.com/benjamincanac.png',
+        size: 'lg',
+        chip: true,
+        class: 'rounded-md'
       }"
       :label="label"
       color="neutral"
       variant="ghost"
-      class="w-full cursor-pointer" 
+      class="w-full cursor-pointer mt-4 mb-3 p-1.5 h-12" 
       :block="block"
+      :ui="{
+          base: 'justify-between group',
+          trailingIcon: 'ms-auto mr-0.5 opacity-50 group-hover:opacity-100',
+        }"
+      trailingIcon="lucide:chevrons-up-down"
     />
 </UDropdownMenu>
 </template>

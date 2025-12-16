@@ -61,11 +61,7 @@ id="space"
               </div>
             </UPageCard>
       </UPageGrid>
-      <UPageCard title="Folders">
-          <div class="h-72 overflow-y-auto">
-              dsadasd
-          </div>
-      </UPageCard>
+      <SidebarFolder class="h-96"/>
     </template>
 </UDashboardPanel>
 </template>
@@ -75,6 +71,24 @@ import type { BreadcrumbItem, NavigationMenuItem } from '@nuxt/ui';
 definePageMeta({
   layout: 'dashboard',
 })
+const source = [
+  {
+    label: 'Folder 1',
+    icon: 'i-lucide-folder',
+    to: '/docs/components/folder1'
+  },
+  {
+    label: 'Folder 2',
+    icon: 'i-lucide-folder',
+    to: '/docs/components/folder2'
+  },
+  {
+    label: 'Folder 3',
+    icon: 'i-lucide-folder',
+    to: '/docs/components/folder3'
+  }
+]
+
 const items = ref<BreadcrumbItem[]>([
   {
     label: 'Docs',
