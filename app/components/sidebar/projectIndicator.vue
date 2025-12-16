@@ -36,17 +36,17 @@ class="cursor-pointer"
                 <p class="-mt-0.5 text-muted text-xs">3 members - Free Plan - <NuxtLink to="/profile" class="underline">Upgrade</NuxtLink></p>
             </div>
         </div>
-        <div class="flex mt-2 gap-4">
+        <div class="flex mt-3.5 gap-4">
             <UButton
             label="Setting"
-            class="w-full flex justify-center border/40 cursor-pointer h-7 text-muted " 
+            class="w-full flex justify-center ring-accented cursor-pointer h-7 text-muted " 
             variant="outline"
             size="sm"
             icon="i-lucide-settings"
             />
             <UButton
             label="People"
-            class="w-full flex justify-center border-default cursor-pointer h-7 text-muted"
+            class="w-full flex justify-center ring-accented cursor-pointer h-7 text-muted"
             variant="outline"
             icon="famicons:people-outline"
             />
@@ -59,7 +59,7 @@ class="cursor-pointer"
         <p class="text-muted text-xs flex items-start">
             Switch Workspace
         </p>
-        <div class=" flex w-full items-start mt-2.5 gap-3 hover:bg-elevated rounded-md cursor-pointer">
+        <div class=" flex w-full items-start mt-2.5 gap-3 hover:bg-elevated rounded-md cursor-pointer p-1.5">
             <UAvatar
               src="https://i.pravatar.cc/150?u=your-user"
               alt="User Avatar"
@@ -102,9 +102,9 @@ const items = [
     }
   ],
   [
-    { label: 'Profile', icon: 'i-lucide-user' },
-    { label: 'Billing', icon: 'i-lucide-credit-card' },
-    { label: 'Settings', icon: 'i-lucide-cog' }
+    { label: 'Profile', icon: 'i-lucide-user', class: 'cursor-pointer' },
+    { label: 'Billing', icon: 'i-lucide-credit-card', class: 'cursor-pointer' },
+    { label: 'Settings', icon: 'i-lucide-cog', class: 'cursor-pointer' }
   ],
   [
     {

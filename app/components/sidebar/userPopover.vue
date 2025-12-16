@@ -62,7 +62,7 @@ const items = ref([
     },
     {
       label: 'Theme',
-      icon: 'i-lucide-user-plus',
+      icon: 'proicons:dark-theme',
       class: 'cursor-pointer',
       children: [
         [
