@@ -59,7 +59,7 @@ class="cursor-pointer h-10"
         <p class="text-muted text-xs flex items-start">
             Switch Workspace
         </p>
-        <div class=" flex w-full items-start mt-2.5 gap-3 hover:bg-elevated rounded-md cursor-pointer p-1.5">
+        <div class=" flex w-full items-start mt-2.5 gap-3 hover:bg-elevated rounded-md cursor-pointer ">
             <UAvatar
               src="https://i.pravatar.cc/150?u=your-user"
               alt="User Avatar"
@@ -77,20 +77,20 @@ class="cursor-pointer h-10"
     <UButton
       :avatar="{
         src: 'https://github.com/benjamincanac.png',
-        size: 'lg',
+        size: 'sm',
         chip: true,
         class: 'rounded-md'
       }"
       :label="label"
       color="neutral"
       variant="ghost"
-      class="w-full cursor-pointer mt-4 mb-3 p-1.5 h-12" 
+      class="w-full cursor-pointer mt-4 mb-3 h-12" 
       :block="block"
       :ui="{
           base: 'justify-between group',
           trailingIcon: 'ms-auto mr-0.5 opacity-50 group-hover:opacity-100',
         }"
-      trailingIcon="lucide:chevrons-up-down"
+      :trailingIcon="collapsed ? undefined : 'lucide:chevrons-up-down'"
     />
 </UDropdownMenu>
 </template>
@@ -99,6 +99,7 @@ defineProps<{
   avatar?: string
   label?: string
   block?: boolean
+  collapsed?: boolean
 }>()
 const router = useRouter()
 const items = [

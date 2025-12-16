@@ -6,6 +6,7 @@
             <SidebarProjectIndicator
             :label="collapsed ? undefined : 'Benjamin'" 
             :block="collapsed"
+            :collapsed="collapsed"
             />
           </template>
       
@@ -72,18 +73,13 @@ const items: NavigationMenuItem[][] = [[{
   label: 'Space',
   icon: 'material-symbols:planet-rounded',
   class: 'cursor-pointer',
-  to: '/dashboard/space'
+  to: '/dashboard/space/12'
 }, {
   label: 'Settings',
   icon: 'i-lucide-settings',
-  defaultOpen: false,
-  children: [{
-    label: 'General'
-  }, {
-    label: 'Members'
-  }, {
-    label: 'Notifications'
-  }]
+  class:'cursor-pointer',
+  to:'/dashboard/settings'
+
 }],
 [{
   label: 'Help & Support',
