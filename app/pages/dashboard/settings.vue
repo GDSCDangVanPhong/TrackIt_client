@@ -160,7 +160,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 </div>
                 <USeparator/>
                 <div class="flex p-4 justify-end" >
-                    <UButton type="submit" label="Submit" color="neutral" class="cursor-pointer" size="sm" />
+                    <UButton type="submit" label="Submit" color="success" class="cursor-pointer" size="sm" />
                 </div>
             </UCard>
             
