@@ -8,12 +8,12 @@
       <p class="text-sm font-semibold">{{ props.card.title }}</p>
     </div>
     <div class="flex gap-x-2 overflow-auto mt-1.5">
-      <UAvatarGroup max="2">
+      <UAvatarGroup max="2" size="sm">
         <UAvatar
           v-for="avatar in props.card.asigneeAvatar"
           :key="avatar"
           :src="avatar"
-          size="xs"
+          
         />
       </UAvatarGroup>
       <UButton
